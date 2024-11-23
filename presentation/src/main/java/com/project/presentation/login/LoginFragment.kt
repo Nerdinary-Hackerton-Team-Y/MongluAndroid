@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
                             .build()
 
                         navController.navigate(R.id.nav_home, null, navOptions)
+
                     } else {
 
                     }

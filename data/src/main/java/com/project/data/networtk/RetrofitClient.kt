@@ -3,6 +3,7 @@ package com.project.data.networtk
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.project.data.remote.service.AccountService
+import com.project.data.remote.service.CommentService
 import com.project.data.remote.service.PostService
 import com.project.data.remote.service.QuestService
 import com.project.data.remote.service.ShortTermForecastService
@@ -16,7 +17,7 @@ object RetrofitClient {
         "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/"
     const val SERVER_BASE_URL = "http://3.34.57.141:80"
 
-    val gson : Gson = GsonBuilder()
+    val gson: Gson = GsonBuilder()
         .setLenient()
         .create()
 
@@ -44,10 +45,11 @@ object RetrofitClient {
         .addInterceptor(HeaderInterceptor())
         .build()
 
+
     private var serverRetrofit = Retrofit.Builder()
         .baseUrl(SERVER_BASE_URL)
         .client(serverOkHttpClient)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     val shortTermForecastService: ShortTermForecastService by lazy {
@@ -58,7 +60,11 @@ object RetrofitClient {
     var postService: PostService = serverRetrofit.create(PostService::class.java)
     var questService: QuestService = serverRetrofit.create(QuestService::class.java)
 
-    fun makeServerOkHttpClient(){
+    val commentService: CommentService by lazy {
+        serverRetrofit.create(CommentService::class.java)
+    }
+
+    fun makeServerOkHttpClient() {
         serverOkHttpClient = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(HeaderInterceptor())
@@ -74,6 +80,4 @@ object RetrofitClient {
         postService = serverRetrofit.create(PostService::class.java)
         questService = serverRetrofit.create(QuestService::class.java)
     }
-
-
 }

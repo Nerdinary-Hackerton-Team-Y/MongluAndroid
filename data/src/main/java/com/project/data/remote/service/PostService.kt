@@ -2,6 +2,9 @@ package com.project.data.remote.service
 
 import com.project.data.remote.request.ReqEditPost
 import com.project.data.remote.request.ReqPost
+import com.project.data.remote.request.ReqCommentPost
+import com.project.data.remote.response.CommentResult
+import com.project.data.remote.response.ServerResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.PATCH

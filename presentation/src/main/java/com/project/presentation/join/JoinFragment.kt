@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.project.presentation.R
 import com.project.presentation.databinding.FragmentJoinBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -100,7 +99,7 @@ class JoinFragment : Fragment() {
         fun initClick() {
             btnJoin.setOnClickListener {
                 viewModel.join(clear = {
-                    findNavController().navigate(R.id.nav_login)
+                    findNavController().popBackStack()
                 })
             }
             ivJoinX.setOnClickListener {
@@ -131,15 +130,10 @@ class JoinFragment : Fragment() {
                 val pwPattern = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!~@$]).{8,}$".toRegex()
                 val emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
 
-                val checkBoxList = listOf(
-                    checkboxJoinAllCheck,
-                    checkboxJoinService,
-                    checkboxJoinLocation,
-                    checkboxJoinService
-                )
+
 
                 btnJoin.isEnabled =
-                    it.pw.matches(pwPattern) && it.email.matches(emailPattern) && checkBoxList.all { it.isChecked }
+                    it.pw.matches(pwPattern) && it.email.matches(emailPattern) && checkboxJoinAllCheck.isChecked
             }
 
         }

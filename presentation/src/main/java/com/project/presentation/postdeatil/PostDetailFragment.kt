@@ -115,38 +115,32 @@ class PostDetailFragment : Fragment() {
     }
 
     private fun onBind(uiState: PostDetailUiState) = with(binding) {
-        when (uiState) {
-            PostDetailUiState.Init -> {}
-            is PostDetailUiState.NormalUiState -> {
-                uiState.commentItem?.let {
-                    commentListAdapter.submitList(it)
+        uiState.commentItem?.let {
+            commentListAdapter.submitList(it)
 
-                    tvPostDetailChatNum.text = it.size.toString()
-                }
+            tvPostDetailChatNum.text = it.size.toString()
+        }
 
-                uiState.contentItem.let {
-                    tvPostDetailTitle.text = it.iconImg
-                    tvPostDetailWriter.text = it.writer
-                    tvPostDetailContent.text = it.content
+        uiState.contentItem?.let {
+            tvPostDetailTitle.text = it.iconImg
+            tvPostDetailWriter.text = it.writer
+            tvPostDetailContent.text = it.content
 
-                    Glide.with(requireContext())
-                        .load(it.contentImg)
-                        .into(ivPostDetailImg)
-                    Glide.with(requireContext())
-                        .load(it.iconImg)
+            Glide.with(requireContext())
+                .load(it.contentImg)
+                .into(ivPostDetailImg)
+            Glide.with(requireContext())
+                .load(it.iconImg)
 
-                }
+        }
 
-                val isMineIv = listOf(
-                    ivPostDetailDelete,
-                    ivPostDetailWriterIcon
-                )
-                isMineIv.forEach {
-                    if (uiState.isMine) it.visibility = View.VISIBLE
-                    else it.visibility = View.GONE
-                }
-
-            }
+        val isMineIv = listOf(
+            ivPostDetailDelete,
+            ivPostDetailWriterIcon
+        )
+        isMineIv.forEach {
+            if (uiState.isMine) it.visibility = View.VISIBLE
+            else it.visibility = View.GONE
         }
     }
 
