@@ -2,11 +2,17 @@ package com.project.presentation.home
 
 
 data class HomeUiState(
-    private val PCP: String
+    val PCP: String,
+    val weather: WeatherEnum?,
+    val challengeHonorList: List<HonorRankItem>,
+    val normalHonorList: List<HonorRankItem>
 ){
     companion object{
         fun init() = HomeUiState(
-            PCP = ""
+            PCP = "",
+            weather = null,
+            challengeHonorList = listOf(),
+            normalHonorList = listOf()
         )
     }
 }

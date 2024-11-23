@@ -25,6 +25,6 @@ class PCPRepository(
         nx = nx,
         ny = ny
     )?.response?.body?.items?.item?.filter {
-        it.category == "PCP"
+        it.category == "PTY"
     }
 }

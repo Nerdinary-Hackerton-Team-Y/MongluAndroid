@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
@@ -28,6 +29,9 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
+    private lateinit var challengeHonorRankAdapter: HonorRankAdapter
+    private lateinit var normalHonorRankAdapter: HonorRankAdapter
+
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireContext())
     }
@@ -40,6 +44,11 @@ class HomeFragment : Fragment() {
             }
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        init()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,11 +61,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getPCP()
+        initView()
+        initViewModel()
     }
 
     private fun initViewModel() = with(viewModel) {
         viewLifecycleOwner.lifecycleScope.launch {
             uiState.collectLatest { uiState ->
+                challengeHonorRankAdapter.setItems(uiState.challengeHonorList)
+                normalHonorRankAdapter.setItems(uiState.normalHonorList)
 
             }
         }
@@ -90,11 +103,46 @@ class HomeFragment : Fragment() {
                 val latitude = location.latitude
                 val longitude = location.longitude
                 CoordinateConverter().convertToXy(latitude, longitude).run {
-                        viewModel.getPCP(nx, ny)
+                        viewModel.getWeatherState(nx, ny)
                 }
             } else {
                 Toast.makeText(requireContext(), "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun init() {
+        normalHonorRankAdapter = HonorRankAdapter(object : HonorRankAdapterCallback {
+            override fun onItemClick() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onLikeClick() {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        challengeHonorRankAdapter = HonorRankAdapter(object : HonorRankAdapterCallback {
+            override fun onItemClick() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onLikeClick() {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun initView(){
+        binding.apply{
+            rvRankChallenge.adapter = challengeHonorRankAdapter
+            rvRankChallenge.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvRankNormal.adapter = normalHonorRankAdapter
+            rvRankNormal.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
