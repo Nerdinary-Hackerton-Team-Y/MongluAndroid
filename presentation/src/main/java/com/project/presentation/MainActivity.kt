@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), NavColorSet {
         supportFragmentManager.findFragmentById(R.id.fragmentContainerView_main) as NavHostFragment
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -43,22 +44,18 @@ class MainActivity : AppCompatActivity(), NavColorSet {
                 it.setOnClickListener {
                     when (it.id) {
                         R.id.cl_main_home -> {
-                            if (currentDestinationId != R.id.nav_home)
                                 navController.navigateWithClear(R.id.nav_home)
                         }
 
                         R.id.cl_main_snow -> {
-                            if (currentDestinationId != R.id.nav_feed)
                                 navController.navigateWithClear(R.id.nav_feed)
                         }
 
                         R.id.cl_main_upload -> {
-                            if (currentDestinationId != R.id.nav_postRegister)
                                 navController.navigateWithClear(R.id.nav_postRegister)
                         }
 
                         R.id.cl_main_mypage -> {
-                            if (currentDestinationId != R.id.nav_mypage)
                                 navController.navigateWithClear(R.id.nav_mypage)
                         }
                     }
@@ -75,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavColorSet {
                 }
             }
 
-            val isAlreadyLogin = false
+            val isAlreadyLogin = true
             val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
             if (isAlreadyLogin) {
                 navGraph.setStartDestination(R.id.nav_home)

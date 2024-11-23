@@ -28,8 +28,14 @@ class JoinFragment : Fragment() {
         _binding = FragmentJoinBinding.inflate(inflater, container, false)
         return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         initView()
         initViewModel()
+
     }
 
     private fun initView() = with(binding) {
@@ -67,37 +73,44 @@ class JoinFragment : Fragment() {
 
                 })
             }
-
-            fun initAllCheckBox() {
-                val checkBoxList = listOf(
-                    checkboxJoinAllCheck,
-                    checkboxJoinService,
-                    checkboxJoinLocation,
-                    checkboxJoinService
-                )
-
-                checkboxJoinAllCheck.setOnCheckedChangeListener { _, isChecked ->
-                    checkBoxList.forEach {
-                        it.isChecked = isChecked
-                    }
-                }
-            }
-
-            fun initClick() {
-                btnJoin.setOnClickListener {
-                    viewModel.join(clear = {
-                        findNavController().navigate(R.id.nav_login)
-                    })
-                }
-                ivJoinX.setOnClickListener {
-                    findNavController().popBackStack()
-                }
-            }
-
-            initEtDataToViewModel()
-            initAllCheckBox()
-            initClick()
         }
+
+        fun initAllCheckBox() {
+            val checkBoxList = listOf(
+                checkboxJoinService,
+                checkboxJoinLocation,
+                checkboxJoinInformation
+            )
+
+            checkboxJoinAllCheck.setOnCheckedChangeListener { _, isChecked ->
+                checkBoxList.forEach {
+                    it.isChecked = isChecked
+                }
+            }
+
+            checkBoxList.forEach { checkBox ->
+                checkBox.setOnCheckedChangeListener { _, _ ->
+                    val allChecked = checkBoxList.all { it.isChecked }
+                    checkboxJoinAllCheck.isChecked = allChecked
+                }
+            }
+        }
+
+
+        fun initClick() {
+            btnJoin.setOnClickListener {
+                viewModel.join(clear = {
+                    findNavController().navigate(R.id.nav_login)
+                })
+            }
+            ivJoinX.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+
+        initEtDataToViewModel()
+        initAllCheckBox()
+        initClick()
     }
 
     private fun initViewModel() = with(viewModel) {

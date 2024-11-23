@@ -1,7 +1,6 @@
 package com.project.presentation.join
 
 import androidx.lifecycle.ViewModel
-import com.project.presentation.postregister.UpdateEtType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
