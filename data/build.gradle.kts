@@ -1,9 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.dagger.hilt.android)
-    id(libs.plugins.jetbrains.kotlin.kapt.get().pluginId)
 }
+
+val localProperties = Properties()
+localProperties.load(project.rootProject.file("local.properties").inputStream())
+val shorttermApiKey = localProperties.getProperty("SHORT_TERM_FORECAST_KEY")?:""
+
 
 android {
     namespace = "com.project.data"
@@ -14,6 +19,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "SHORT_TERM_FORECAST_KEY", shorttermApiKey)
     }
 
     buildTypes {
@@ -26,20 +33,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
-    kapt {
-        correctErrorTypes = true
-    }
-    hilt{
-        enableAggregatingTask = false
+    buildFeatures{
+        buildConfig = true
     }
 }
+
 
 dependencies {
 
@@ -50,9 +55,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
     // retrofit2
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
