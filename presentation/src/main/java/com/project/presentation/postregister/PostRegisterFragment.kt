@@ -99,7 +99,7 @@ class PostRegisterFragment : Fragment() {
 
         fun initRegisterBtn() {
             btnPostRegisterRegister.setOnClickListener {
-                viewModel.postContent()
+                viewModel.postContent(clear = { findNavController().popBackStack()})
             }
         }
 

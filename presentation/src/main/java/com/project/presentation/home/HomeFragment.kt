@@ -78,6 +78,7 @@ class HomeFragment : Fragment() {
         getPYT()
         initView()
         initViewModel()
+//        viewModel.getPost()
     }
 
     private fun initViewModel() = with(viewModel) {
@@ -134,22 +135,18 @@ class HomeFragment : Fragment() {
     private fun init() {
         normalHonorRankAdapter = HonorRankAdapter(object : HonorRankAdapterCallback {
             override fun onItemClick() {
-                TODO("Not yet implemented")
             }
 
             override fun onLikeClick() {
-                TODO("Not yet implemented")
             }
 
         })
 
         challengeHonorRankAdapter = HonorRankAdapter(object : HonorRankAdapterCallback {
             override fun onItemClick() {
-                TODO("Not yet implemented")
             }
 
             override fun onLikeClick() {
-                TODO("Not yet implemented")
             }
 
         })

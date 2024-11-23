@@ -6,5 +6,6 @@ data class HonorRankItem(
     val title: String,
     val rank: Int,
     val likeCount: Int,
-    val imgUrl: String
+    val imgUrl: String,
+    val content: String = ""
 )
