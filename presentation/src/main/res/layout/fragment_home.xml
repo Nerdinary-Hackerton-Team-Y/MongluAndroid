@@ -26,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="@color/mong100"
+                    android:src="@drawable/img_home_illustration"
                     app:layout_constraintDimensionRatio="412:426"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

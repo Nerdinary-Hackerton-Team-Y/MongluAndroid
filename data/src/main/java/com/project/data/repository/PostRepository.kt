@@ -2,6 +2,7 @@ package com.project.data.repository
 
 import com.project.data.remote.request.ReqEditPost
 import com.project.data.remote.request.ReqPost
+import com.project.data.remote.response.ResGetCurrRequestPost
 import com.project.data.remote.service.PostService
 import retrofit2.Response
 
@@ -28,4 +29,24 @@ class PostRepository(
     ): Response<String?> = postService.deletePost(
         albumId
     )
+
+    suspend fun getHashtagPost(
+        orderCode: Int,
+        hashtag: String
+    ): List<ResGetCurrRequestPost>? {
+        return try {
+            val res = postService.post(
+                orderCode = orderCode,
+                hashtag = hashtag
+            )
+            if (res.isSuccessful && res.code() == 200) {
+                res.body()
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 }

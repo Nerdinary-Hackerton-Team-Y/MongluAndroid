@@ -94,7 +94,7 @@ class FeedFragment : Fragment() {
     private fun initListener() {
         binding.apply {
             ivSearch.setOnClickListener {
-                viewModel.searchFeed(etHashtag.text.toString())
+                viewModel.searchFeed(etHashtag.text.toString(), binding.spinnerSort.selectedItemPosition)
                 hideKeyboard(etHashtag)
                 etHashtag.clearFocus()
             }
@@ -122,7 +122,7 @@ class FeedFragment : Fragment() {
                     if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                         (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
                     ) {
-                        viewModel.searchFeed(etHashtag.text.toString())
+                        viewModel.searchFeed(etHashtag.text.toString(), binding.spinnerSort.selectedItemPosition)
                         hideKeyboard(etHashtag)
                         etHashtag.clearFocus()
                         true // 이벤트 소비
@@ -139,7 +139,7 @@ class FeedFragment : Fragment() {
                     val str = etHashtag.text.toString().apply{
                         replace("#","")
                     }
-                    viewModel.searchFeed(str)
+                    viewModel.searchFeed(str, binding.spinnerSort.selectedItemPosition)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
