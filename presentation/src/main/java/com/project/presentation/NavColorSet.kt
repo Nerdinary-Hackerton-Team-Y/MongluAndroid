@@ -2,7 +2,7 @@ package com.project.presentation
 
 interface NavColorSet {
     fun setNavHome()
-    fun seNavSnow()
+    fun setNavSnow()
     fun setNavMypage()
-    fun setNav()
+    fun setNavUpload()
 }

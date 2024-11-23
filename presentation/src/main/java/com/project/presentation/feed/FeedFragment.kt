@@ -1,6 +1,7 @@
 package com.project.presentation.feed
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.KeyEvent
@@ -16,6 +17,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.project.presentation.NavColorSet
 import com.project.presentation.R
 import com.project.presentation.databinding.FragmentFeedBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -28,6 +30,15 @@ class FeedFragment : Fragment() {
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var arrayAdapter: ArrayAdapter<String>
     private val sortList = listOf("최신순", "인기순")
+    private var navSetContext: NavColorSet? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is NavColorSet) {
+            navSetContext = context
+            context.setNavSnow()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,5 +153,10 @@ class FeedFragment : Fragment() {
     private fun hideKeyboard(editText: EditText) {
         val imm = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navSetContext?.setNavHome()
     }
 }

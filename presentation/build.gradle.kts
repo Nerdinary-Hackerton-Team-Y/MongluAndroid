@@ -59,4 +59,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.play.services.location)
+
+    // Reflection
+    implementation(libs.reflection)
 }

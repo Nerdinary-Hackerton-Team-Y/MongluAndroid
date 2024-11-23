@@ -1,5 +1,6 @@
 package com.project.presentation.mypage
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.project.presentation.NavColorSet
 import com.project.presentation.R
 import com.project.presentation.databinding.FragmentMypageBinding
 import com.project.presentation.feed.FeedAdapter
@@ -21,6 +23,15 @@ class MyPageFragment : Fragment() {
     private val viewModel: MyPageViewModel by viewModels()
     private lateinit var feedAdapter: FeedAdapter
     private var selectedTab: Int = 0
+    private var navSetContext: NavColorSet? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is NavColorSet) {
+            navSetContext = context
+            context.setNavMypage()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,5 +128,10 @@ class MyPageFragment : Fragment() {
                 tvReviewPost.typeface = resources.getFont(R.font.pretendard_semibold)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navSetContext?.setNavMypage()
     }
 }

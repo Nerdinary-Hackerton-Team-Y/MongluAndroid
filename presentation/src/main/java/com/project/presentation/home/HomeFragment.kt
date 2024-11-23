@@ -1,6 +1,7 @@
 package com.project.presentation.home
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.project.presentation.NavColorSet
 import com.project.presentation.databinding.FragmentHomeBinding
 import com.project.presentation.util.CoordinateConverter
 import kotlinx.coroutines.flow.collectLatest
@@ -44,11 +46,22 @@ class HomeFragment : Fragment() {
             }
         }
 
+    private var navSetContext: NavColorSet? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is NavColorSet) {
+            navSetContext = context
+            context.setNavHome()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         init()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,7 +73,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getPCP()
+        getPYT()
         initView()
         initViewModel()
     }
@@ -71,13 +84,18 @@ class HomeFragment : Fragment() {
                 challengeHonorRankAdapter.setItems(uiState.challengeHonorList)
                 normalHonorRankAdapter.setItems(uiState.normalHonorList)
 
+                uiState.weather?.let { weather ->
+                    uiState.region?.let { region ->
+                        binding.tvWeatherState.text = weather.str.replace("#VALUE#", region)
+                    }
+                }
             }
+
         }
     }
 
 
-
-    private fun getPCP() {
+    private fun getPYT() {
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -103,7 +121,7 @@ class HomeFragment : Fragment() {
                 val latitude = location.latitude
                 val longitude = location.longitude
                 CoordinateConverter().convertToXy(latitude, longitude).run {
-                        viewModel.getWeatherState(nx, ny)
+                    viewModel.getWeatherState(nx, ny)
                 }
             } else {
                 Toast.makeText(requireContext(), "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
@@ -135,8 +153,8 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun initView(){
-        binding.apply{
+    private fun initView() {
+        binding.apply {
             rvRankChallenge.adapter = challengeHonorRankAdapter
             rvRankChallenge.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -144,6 +162,11 @@ class HomeFragment : Fragment() {
             rvRankNormal.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navSetContext?.setNavHome()
     }
 
     override fun onDestroyView() {

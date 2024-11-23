@@ -40,6 +40,8 @@ class PostRegisterViewModel : ViewModel() {
             )
         }
     }
+
+    fun postContent(){}
 }
 
 enum class UpdateEtType {
