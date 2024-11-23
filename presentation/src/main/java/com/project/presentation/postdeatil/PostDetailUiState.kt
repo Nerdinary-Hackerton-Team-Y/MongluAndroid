@@ -1,11 +1,15 @@
 package com.project.presentation.postdeatil
 
-sealed interface PostDetailUiState {
-    data class NormalUiState(
-        val contentItem: ContentItem,
-        val commentItem: List<CommentItem>,
-        val isMine: Boolean
-    ) : PostDetailUiState
-
-    data object Init : PostDetailUiState
+data class PostDetailUiState(
+    val contentItem: ContentItem?,
+val commentItem: List<CommentItem>,
+val isMine: Boolean
+){
+    companion object {
+        fun init() = PostDetailUiState(
+            contentItem = null,
+            commentItem = emptyList(),
+            isMine = false
+        )
+    }
 }
