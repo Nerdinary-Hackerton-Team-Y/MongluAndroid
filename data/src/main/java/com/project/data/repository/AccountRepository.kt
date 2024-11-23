@@ -1,5 +1,6 @@
 package com.project.data.repository
 
+import android.util.Log
 import com.project.data.networtk.NetworkSettings
 import com.project.data.networtk.RetrofitClient.makeServerOkHttpClient
 import com.project.data.remote.response.ReqRegister
@@ -17,6 +18,7 @@ class AccountRepository(
                 email = email,
                 password = password
             )
+
             if (res.isSuccessful && res.code() == 200) {
                 val token = res.body()
                 NetworkSettings.getInstance().token = token!!
@@ -26,6 +28,7 @@ class AccountRepository(
                 false
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             false
         }
     }
