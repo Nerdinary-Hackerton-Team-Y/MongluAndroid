@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".join.JoinFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_join_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/common_horizon_margin"
+        android:paddingVertical="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_join_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_x"
+            app:layout_constraintBottom_toBottomOf="@id/tv_join_pageName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_join_pageName" />
+
+        <TextView
+            android:id="@+id/tv_join_pageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="회원가입"
+            android:textColor="@color/gray900"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_join_middle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/gray100"
+        android:paddingHorizontal="@dimen/common_horizon_margin"
+        android:paddingVertical="@dimen/common_vertical_margin"
+        app:layout_constraintBottom_toTopOf="@id/cl_join_btnBox"
+        app:layout_constraintTop_toBottomOf="@id/cl_join_top">
+
+        <TextView
+            android:id="@+id/tv_join_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="이메일 주소"
+            android:textColorHint="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_join_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_join_et"
+            android:hint="이메일 주소(example@monglu.com)"
+            android:maxLines="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/gray300"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_email" />
+
+        <TextView
+            android:id="@+id/tv_join_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="비밀번호"
+            android:textColorHint="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_join_email" />
+
+        <EditText
+            android:id="@+id/et_join_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_join_et"
+            android:hint="비밀번호를 입력하세요"
+            android:maxLines="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/gray300"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_password" />
+
+        <TextView
+            android:id="@+id/tv_join_passwordDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="영어, 숫자, 특수기호(!,~,@,$) 포함 8자 이상"
+            android:textColor="@color/gray600"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_join_password" />
+
+        <TextView
+            android:id="@+id/tv_join_passwordRe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="비밀번호 확인"
+            android:textColorHint="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_passwordDescription" />
+
+        <EditText
+            android:id="@+id/et_join_passwordRe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_join_et"
+            android:hint="비밀번호를 입력하세요"
+            android:maxLines="1"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/gray300"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_passwordRe" />
+
+        <TextView
+            android:id="@+id/tv_join_passwordReDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="비밀번호가 일치하지 않습니다"
+            android:textColor="@color/red500"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_join_passwordRe"
+            android:visibility="gone"/>
+
+
+        <CheckBox
+            android:id="@+id/checkbox_join_allCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_join_passwordReDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="전체 동의합니다."
+            android:textColor="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_join_allCheck"
+            app:layout_constraintStart_toEndOf="@id/checkbox_join_allCheck"
+            app:layout_constraintTop_toTopOf="@id/checkbox_join_allCheck" />
+
+        <CheckBox
+            android:id="@+id/checkbox_join_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_join_allCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="몽글루 서비스 약관 (필수)"
+            android:textColor="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_join_service"
+            app:layout_constraintStart_toEndOf="@id/checkbox_join_service"
+            app:layout_constraintTop_toTopOf="@id/checkbox_join_service" />
+
+
+        <CheckBox
+            android:id="@+id/checkbox_join_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_join_service" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="개인정보 수집 및 이용 약관 (필수)"
+            android:textColor="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_join_information"
+            app:layout_constraintStart_toEndOf="@id/checkbox_join_information"
+            app:layout_constraintTop_toTopOf="@id/checkbox_join_information" />
+
+        <CheckBox
+            android:id="@+id/checkbox_join_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_join_information" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="위치기반 서비스 이용 약관 (필수)"
+            android:textColor="@color/gray900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_join_location"
+            app:layout_constraintStart_toEndOf="@id/checkbox_join_location"
+            app:layout_constraintTop_toTopOf="@id/checkbox_join_location" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_join_btnBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/common_horizon_margin"
+        android:paddingVertical="@dimen/common_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_register"
+            android:enabled="false"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:text="가입하기"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
