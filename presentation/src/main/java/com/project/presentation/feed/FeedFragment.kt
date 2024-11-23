@@ -67,7 +67,7 @@ class FeedFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             uiState.collectLatest { uiState ->
                 feedAdapter.setItems(uiState.feedList)
-
+                binding.tvWeeklyQuest.text = uiState.questStr
             }
         }
     }

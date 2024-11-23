@@ -54,17 +54,9 @@ object RetrofitClient {
         shortTermRetrofit.create(ShortTermForecastService::class.java)
     }
 
-    val accountService: AccountService by lazy {
-        serverRetrofit.create(AccountService::class.java)
-    }
-
-    val postService: PostService by lazy {
-        serverRetrofit.create(PostService::class.java)
-    }
-
-    val questService: QuestService by lazy {
-        serverRetrofit.create(QuestService::class.java)
-    }
+    var accountService: AccountService = serverRetrofit.create(AccountService::class.java)
+    var postService: PostService = serverRetrofit.create(PostService::class.java)
+    var questService: QuestService = serverRetrofit.create(QuestService::class.java)
 
     fun makeServerOkHttpClient(){
         serverOkHttpClient = OkHttpClient.Builder()
@@ -77,6 +69,10 @@ object RetrofitClient {
             .client(serverOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+        accountService = serverRetrofit.create(AccountService::class.java)
+        postService = serverRetrofit.create(PostService::class.java)
+        questService = serverRetrofit.create(QuestService::class.java)
     }
 
 
