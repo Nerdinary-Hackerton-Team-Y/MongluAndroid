@@ -15,4 +15,16 @@
         tools:layout="@layout/fragment_post_register"
         android:name="com.project.presentation.postregister.PostRegisterFragment"/>
 
+    <fragment
+        android:id="@+id/nav_feed"
+        tools:layout="@layout/fragment_feed"
+        android:name="com.project.presentation.feed.FeedFragment"
+        />
+
+    <fragment
+        android:id="@+id/nav_mypage"
+        tools:layout="@layout/fragment_mypage"
+        android:name="com.project.presentation.mypage.MyPageFragment"
+        />
+
 </navigation>
