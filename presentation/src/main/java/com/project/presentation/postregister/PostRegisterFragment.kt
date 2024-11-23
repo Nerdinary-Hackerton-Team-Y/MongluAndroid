@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,6 @@ class PostRegisterFragment : Fragment() {
         initViewModel()
     }
 
-
     private fun initView() = with(binding) {
         fun initEtDataToViewModel() {
             val list = listOf(
@@ -64,10 +64,6 @@ class PostRegisterFragment : Fragment() {
                         count: Int,
                         after: Int
                     ) {
-                        viewModel.updateEtUiState(
-                            type = it.second,
-                            data = s.toString()
-                        )
                     }
 
                     override fun onTextChanged(
@@ -79,6 +75,10 @@ class PostRegisterFragment : Fragment() {
                     }
 
                     override fun afterTextChanged(s: Editable?) {
+                        viewModel.updateEtUiState(
+                            type = it.second,
+                            data = s.toString()
+                        )
                     }
 
                 })
@@ -86,7 +86,9 @@ class PostRegisterFragment : Fragment() {
         }
 
         fun initSelectImage() {
-            pickImageLauncher.launch("image/*")
+            ivPostRegister.setOnClickListener {
+                pickImageLauncher.launch("image/*")
+            }
         }
 
         fun initTopBar() {
@@ -94,10 +96,24 @@ class PostRegisterFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
+
+        fun initRegisterBtn() {
+            btnPostRegisterRegister.setOnClickListener {
+                viewModel.postContent()
+            }
+        }
+
+        fun initIsChallenge() {
+            arguments?.getBoolean("isChallenge")?.let {
+                binding.scPostDetailIsChallenge.isChecked = it
+            }
+
+        }
         initEtDataToViewModel()
         initSelectImage()
         initTopBar()
-
+        initRegisterBtn()
+        initIsChallenge()
     }
 
     private fun initViewModel() = with(viewModel) {
@@ -110,9 +126,7 @@ class PostRegisterFragment : Fragment() {
 
     private fun isBtnEnable(uiState: PostRegisterUiState) {
         uiState.run {
-            if (img != null && title != "" && content != "") binding.btnPostRegisterRegister.isEnabled =
-                true
-            else binding.btnPostRegisterRegister.isEnabled = false
+            binding.btnPostRegisterRegister.isEnabled = (img != null && title.isNotEmpty() && content.isNotEmpty())
         }
     }
 

@@ -24,38 +24,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_postDetail_title" />
 
-
         <ImageView
-            android:id="@+id/iv_postDetail_xInvisible"
+            android:id="@+id/iv_postDetail_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_x"
-            android:visibility="invisible"
+            android:src="@drawable/ic_trash"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/tv_postDetail_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_postDetail_title" />
+            app:layout_constraintTop_toTopOf="@id/tv_postDetail_title"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_postDetail_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_pencil"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tv_postDetail_title"
+            app:layout_constraintEnd_toStartOf="@id/iv_postDetail_delete"
+            app:layout_constraintTop_toTopOf="@id/tv_postDetail_title"
+            tools:visibility="visible" />
+
 
         <TextView
             android:id="@+id/tv_postDetail_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="48dp"
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_bold"
             android:lines="1"
             android:text="게시글 제목 adfafasdfasdfasdfasdfasdfasdf"
             android:textColor="@color/gray900"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/iv_postDetail_xInvisible"
-            app:layout_constraintStart_toEndOf="@id/iv_postDetail_x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cl_postDetail_addComment"
         app:layout_constraintTop_toBottomOf="@id/cl_postDetail_top">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,6 +83,15 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/selector_switch_thumb" />
+
+            <ImageView
+                android:id="@+id/iv_postDetail_writerIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_heart" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_postDetail_textBox"
@@ -176,6 +199,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cl_postDetail_textBox" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_postDetail_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -185,5 +209,44 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_postDetail_addComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/common_horizon_margin"
+        android:paddingVertical="@dimen/common_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/et_postDetail_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_et_comment"
+            android:fontFamily="@font/pretendard_regular"
+            android:hint="댓글을 입력해주세요"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="30dp"
+            android:paddingRight="40dp"
+            android:textColor="@color/gray900"
+            android:textColorHint="@color/gray300"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="dfadsfljasdlfalksdflkasdflajsdlfjasldfjladsasdfasdfasdfas\n\nas" />
+
+        <ImageView
+            android:id="@+id/iv_postDetail_btnAddComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/ic_add_comment_off"
+            app:layout_constraintBottom_toBottomOf="@id/et_postDetail_comment"
+            app:layout_constraintEnd_toEndOf="@id/et_postDetail_comment" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

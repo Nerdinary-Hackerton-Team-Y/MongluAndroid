@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter
 class PCPRepository(
     private val shortTermForecastService: ShortTermForecastService
 ) {
-    suspend fun getPCP(
+    suspend fun getPTY(
         pageNo: Int = 1,
         numOfRows: Int = 288,
         dataType: String = "JSON",

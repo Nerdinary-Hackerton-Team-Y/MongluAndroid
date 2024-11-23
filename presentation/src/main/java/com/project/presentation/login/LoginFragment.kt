@@ -24,11 +24,13 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initView()
     }
 
     private fun initView() = with(binding){
         tvLoginJoin.setOnClickListener {
-//            findNavController().navigate()
+            findNavController().navigate(R.id.nav_join)
         }
     }
     override fun onDestroyView() {

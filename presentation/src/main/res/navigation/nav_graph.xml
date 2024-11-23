@@ -7,24 +7,36 @@
 
     <fragment
         android:id="@+id/nav_home"
-        tools:layout="@layout/fragment_home"
-        android:name="com.project.presentation.home.HomeFragment"/>
+        android:name="com.project.presentation.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_postRegister"
-        tools:layout="@layout/fragment_post_register"
-        android:name="com.project.presentation.postregister.PostRegisterFragment"/>
+        android:name="com.project.presentation.postregister.PostRegisterFragment"
+        tools:layout="@layout/fragment_post_register" />
 
     <fragment
         android:id="@+id/nav_feed"
-        tools:layout="@layout/fragment_feed"
         android:name="com.project.presentation.feed.FeedFragment"
-        />
+        tools:layout="@layout/fragment_feed" />
 
     <fragment
         android:id="@+id/nav_mypage"
-        tools:layout="@layout/fragment_mypage"
         android:name="com.project.presentation.mypage.MyPageFragment"
-        />
+        tools:layout="@layout/fragment_mypage" />
 
+    <fragment
+        android:id="@+id/nav_postDetail"
+        android:name="com.project.presentation.postdeatil.PostDetailFragment"
+        tools:layout="@layout/fragment_post_detail" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.project.presentation.login.LoginFragment"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/nav_join"
+        android:name="com.project.presentation.join.JoinFragment"
+        tools:layout="@layout/fragment_join"/>
 </navigation>

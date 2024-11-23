@@ -18,8 +18,8 @@ class JoinViewModel : ViewModel() {
         }
     }
 
-    fun join() {
-
+    fun join(clear: () -> Unit) {
+        clear
     }
 }
 

@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
 
+
     // Glide
     implementation(libs.glide)
     implementation(libs.androidx.navigation.fragment)

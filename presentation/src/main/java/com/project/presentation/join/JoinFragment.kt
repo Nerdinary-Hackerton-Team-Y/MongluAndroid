@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.project.presentation.R
 import com.project.presentation.databinding.FragmentJoinBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -82,15 +83,20 @@ class JoinFragment : Fragment() {
                 }
             }
 
-            btnJoin.setOnClickListener {
-                viewModel.join()
-            }
-            ivJoinX.setOnClickListener {
-                findNavController().popBackStack()
+            fun initClick() {
+                btnJoin.setOnClickListener {
+                    viewModel.join(clear = {
+                        findNavController().navigate(R.id.nav_login)
+                    })
+                }
+                ivJoinX.setOnClickListener {
+                    findNavController().popBackStack()
+                }
             }
 
             initEtDataToViewModel()
             initAllCheckBox()
+            initClick()
         }
     }
 
