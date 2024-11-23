@@ -7,6 +7,6 @@ data class ReqPost(
     @SerializedName("content") val content: String,
     @SerializedName("imageUrl") val imageUrl: String,
     @SerializedName("isQuest") val isQuest: Boolean,
-    @SerializedName("questId") val questId: String,
+    @SerializedName("questId") val questId: Int,
     @SerializedName("hashtags") val hashtags: List<String>,
 )

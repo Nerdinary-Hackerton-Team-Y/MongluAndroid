@@ -5,6 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 private const val TAG = "HeaderInterceptor"
+
 class HeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 

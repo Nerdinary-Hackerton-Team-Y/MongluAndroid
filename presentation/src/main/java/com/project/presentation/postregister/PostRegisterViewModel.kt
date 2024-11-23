@@ -47,18 +47,22 @@ class PostRegisterViewModel : ViewModel() {
         }
     }
 
-    fun postContent() = viewModelScope.launch {
-        uiState.value.let {
-            postRepository.post(
-                ReqPost(
-                    title = it.title,
-                    content = it.content,
-                    imageUrl = "",
-                    isQuest = it.challenge,
-                    questId = "1",
-                    hashtags = listOf("string")
+    fun postContent(clear: () -> Unit) = viewModelScope.launch {
+        try {
+            uiState.value.let {
+                postRepository.post(
+                    ReqPost(
+                        title = it.title,
+                        content = it.content,
+                        imageUrl = "",
+                        isQuest = it.challenge,
+                        questId = 1,
+                        hashtags = listOf("string")
+                    )
                 )
-            )
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 }

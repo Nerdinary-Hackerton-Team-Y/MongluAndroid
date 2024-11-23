@@ -11,7 +11,9 @@ class PostRepository(
 
     suspend fun post(
         req: ReqPost
-    ): Response<String?> = postService.post(req)
+    ) = postService.post(req)
+
+    suspend fun getPost() = postService.getPost()
 
     suspend fun editPost(
         albumId: Int,

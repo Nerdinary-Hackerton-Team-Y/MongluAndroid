@@ -16,3 +16,20 @@ data class CommentResult(
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("updateAt") val updateAt: String
 )
+
+data class PostResult(
+    @SerializedName("postId") val postId: Int,
+    @SerializedName("createdAt") val createdAt: String
+)
+
+
+data class PostResponse(
+    @SerializedName("id") val id: Int,
+    @SerializedName("imageUrl") val imageUrl: String?,
+    @SerializedName("title") val title: String,
+    @SerializedName("content") val content: String,
+    @SerializedName("isQuest") val isQuest: Boolean,
+    @SerializedName("score") val score: Int,
+    @SerializedName("nickname") val nickname: String,
+    @SerializedName("likeCount") val likeCount: Int
+)

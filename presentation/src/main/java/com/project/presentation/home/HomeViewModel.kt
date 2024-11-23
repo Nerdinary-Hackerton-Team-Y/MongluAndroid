@@ -6,6 +6,7 @@ import com.project.data.repository.RepositoryFactory
 import com.project.presentation.util.findRegionByCoordinates
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -15,23 +16,46 @@ class HomeViewModel() : ViewModel() {
     val uiState = _uiState.asStateFlow()
 
     private val pcpRepository = RepositoryFactory.createPCPRepository()
+    private val postRepository = RepositoryFactory.createPostRepository()
 
     init {
         getChallengeHonor()
     }
+
     fun getWeatherState(nx: Int, ny: Int) = viewModelScope.launch {
-        val nowHourStr =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH00"))
-        val data = pcpRepository.getPTY(nx = nx, ny = ny)?.firstOrNull { it.fcstTime == nowHourStr}
-        val weather = when(data?.value){
+        val nowHourStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH00"))
+        val data = pcpRepository.getPTY(nx = nx, ny = ny)?.firstOrNull { it.fcstTime == nowHourStr }
+        val weather = when (data?.value) {
             "0" -> WeatherEnum.Sunny
             "3" -> WeatherEnum.Snow
             else -> null
         }
         _uiState.value = _uiState.value.copy(
             weather = weather,
-            region = findRegionByCoordinates(nx,ny)?.region
+            region = findRegionByCoordinates(nx, ny)?.region
         )
     }
+
+//    fun getPost() = viewModelScope.launch {
+//        postRepository.getPost().map {
+//            HonorRankItem(
+//                id = it.id,
+//                nickname = "",
+//                likeCount = 0,
+//                rank = 0,
+//                title = it.title,
+//                content = it.content,
+//                imgUrl = ""
+//            )
+//        }.let {
+//            _uiState.update { prev ->
+//                prev.copy(
+//                    challengeHonorList = it,
+//                    normalHonorList = it
+//                )
+//            }
+//        }
+//    }
 
     private fun getChallengeHonor() = viewModelScope.launch {
         _uiState.value = _uiState.value.copy(

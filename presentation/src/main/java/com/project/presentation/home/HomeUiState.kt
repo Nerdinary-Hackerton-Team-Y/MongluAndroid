@@ -6,7 +6,7 @@ data class HomeUiState(
     val weather: WeatherEnum?,
     val region: String?,
     val challengeHonorList: List<HonorRankItem>,
-    val normalHonorList: List<HonorRankItem>
+    val normalHonorList: List<HonorRankItem>,
 ){
     companion object{
         fun init() = HomeUiState(
@@ -14,7 +14,7 @@ data class HomeUiState(
             weather = null,
             region = null,
             challengeHonorList = listOf(),
-            normalHonorList = listOf()
+            normalHonorList = listOf(),
         )
     }
 }
