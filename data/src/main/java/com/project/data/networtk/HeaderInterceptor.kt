@@ -1,5 +1,6 @@
 package com.project.data.networtk
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -12,6 +13,7 @@ class HeaderInterceptor : Interceptor {
 
         // 헤더에 인증토큰 추가
         val token: String = NetworkSettings.getInstance().token
+        Log.d(TAG, "intercept: ${token}")
         if (token.isNotEmpty()) {
             newBuilder.addHeader("Authorization", "Bearer $token")
         }
