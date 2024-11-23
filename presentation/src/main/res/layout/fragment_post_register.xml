@@ -7,7 +7,7 @@
     tools:context=".postregister.PostRegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_post_top"
+        android:id="@+id/cl_postRegister_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -16,16 +16,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_post_x"
+            android:id="@+id/iv_postRegister_x"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_x"
-            app:layout_constraintBottom_toBottomOf="@id/tv_post_pageName"
+            app:layout_constraintBottom_toBottomOf="@id/tv_postRegister_pageName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_post_pageName" />
+            app:layout_constraintTop_toTopOf="@id/tv_postRegister_pageName" />
 
         <TextView
-            android:id="@+id/tv_post_pageName"
+            android:id="@+id/tv_postRegister_pageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_bold"
@@ -35,6 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -43,7 +44,7 @@
         android:layout_height="0dp"
         android:background="@color/gray100"
         app:layout_constraintBottom_toBottomOf="@id/cl_post_registerBtn"
-        app:layout_constraintTop_toBottomOf="@id/cl_post_top">
+        app:layout_constraintTop_toBottomOf="@id/cl_postRegister_top">
 
 
         <EditText
@@ -68,7 +69,7 @@
         <ImageView
             android:id="@+id/iv_postRegister"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="@dimen/post_img_height"
             android:layout_marginTop="2dp"
             android:scaleType="center"
             app:layout_constraintTop_toBottomOf="@id/et_postRegister_title"

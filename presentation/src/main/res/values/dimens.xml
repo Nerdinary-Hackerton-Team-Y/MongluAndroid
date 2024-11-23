@@ -2,4 +2,5 @@
 <resources>
     <dimen name="common_vertical_margin">10dp</dimen>
     <dimen name="common_horizon_margin">20dp</dimen>
+    <dimen name="post_img_height">300dp</dimen>
 </resources>

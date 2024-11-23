@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.project.presentation.databinding.FragmentPostRegisterBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -37,7 +38,6 @@ class PostRegisterFragment : Fragment() {
     ): View? {
         _binding = FragmentPostRegisterBinding.inflate(inflater, container, false)
         return binding.root
-
 
     }
 
@@ -89,8 +89,15 @@ class PostRegisterFragment : Fragment() {
             pickImageLauncher.launch("image/*")
         }
 
+        fun initTopBar() {
+            ivPostRegisterX.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
         initEtDataToViewModel()
         initSelectImage()
+        initTopBar()
+
     }
 
     private fun initViewModel() = with(viewModel) {

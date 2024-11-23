@@ -16,6 +16,7 @@ retrofit2 = "2.11.0"
 okhttp3 = "4.9.3"
 navigationFragment = "2.8.4"
 playServicesLocation = "21.3.0"
+reflection = "1.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +45,8 @@ retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+
+reflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "reflection" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
