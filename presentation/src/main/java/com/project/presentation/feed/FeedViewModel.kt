@@ -1,12 +1,21 @@
 package com.project.presentation.feed
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.project.data.repository.RepositoryFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class FeedViewModel : ViewModel() {
+    private val questRepository = RepositoryFactory.createQuestRepository()
+
     private val _uiState = MutableStateFlow(FeedUiState.init())
     val uiState = _uiState.asStateFlow()
+
+    init {
+        getQuest()
+    }
 
     fun setSearchHashtagText(newText: String) {
         _uiState.value = _uiState.value.copy(
@@ -18,6 +27,15 @@ class FeedViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(
             sortCode = code
         )
+    }
+
+    fun getQuest(){
+        viewModelScope.launch {
+            val res = questRepository.getCurrQuest()
+            _uiState.value = _uiState.value.copy(
+                questStr = res?.title ?: ""
+            )
+        }
     }
 
     fun searchFeed(text: String) {
