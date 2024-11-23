@@ -99,6 +99,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/shape_join_et"
             android:hint="비밀번호를 입력하세요"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
@@ -107,7 +108,6 @@
             android:textColorHint="@color/gray300"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:inputType="textPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_join_password" />
 
@@ -142,8 +142,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/shape_join_et"
-            android:inputType="textPassword"
             android:hint="비밀번호를 입력하세요"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"

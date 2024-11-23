@@ -74,11 +74,11 @@ class MainActivity : AppCompatActivity(), NavColorSet {
 
             val isAlreadyLogin = true
             val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-//            if (isAlreadyLogin) {
-//                navGraph.setStartDestination(R.id.nav_home)
-//            } else {
-//                navGraph.setStartDestination(R.id.nav_login)
-//            }
+            if (isAlreadyLogin) {
+                navGraph.setStartDestination(R.id.nav_home)
+            } else {
+                navGraph.setStartDestination(R.id.nav_login)
+            }
             navController.setGraph(navGraph, null)
         }
 

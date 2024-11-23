@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.project.presentation.R
 import com.project.presentation.databinding.FragmentJoinBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

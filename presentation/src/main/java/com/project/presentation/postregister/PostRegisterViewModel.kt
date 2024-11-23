@@ -56,7 +56,7 @@ class PostRegisterViewModel : ViewModel() {
                     imageUrl = "",
                     isQuest = it.challenge,
                     questId = "1",
-                    hashtags = emptyList()
+                    hashtags = listOf("string")
                 )
             )
         }
