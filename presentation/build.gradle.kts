@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id(libs.plugins.jetbrains.kotlin.kapt.get().pluginId)
-    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -26,19 +24,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    kapt {
-        correctErrorTypes = true
-    }
-
     viewBinding{
         enable = true
     }
+
 }
 
 dependencies {
@@ -62,11 +54,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
 
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.android.compiler)
 
     // Glide
     implementation(libs.glide)
     implementation(libs.androidx.navigation.fragment)
+    implementation(libs.play.services.location)
 }
