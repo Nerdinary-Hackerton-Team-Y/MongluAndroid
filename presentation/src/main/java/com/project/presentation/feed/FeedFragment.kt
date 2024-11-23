@@ -157,6 +157,6 @@ class FeedFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        navSetContext?.setNavHome()
+        navSetContext?.setNavSnow()
     }
 }
