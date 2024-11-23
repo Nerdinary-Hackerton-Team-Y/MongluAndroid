@@ -2,4 +2,51 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="red100">#FFE0E1</color>
+    <color name="red200">#FFAAAC</color>
+    <color name="red300">#FF7F83</color>
+    <color name="red400">#FF545A</color>
+    <color name="red500">#FF2A31</color>
+    <color name="red600">#CC212F</color>
+    <color name="red700">#99191D</color>
+    <color name="red800">#861113</color>
+    <color name="red900">#33080A</color>
+
+    <color name="mong100">#D5EAFF</color>
+    <color name="mong200">#A3D1FF</color>
+    <color name="mong300">#70B8FF</color>
+    <color name="mong400">#3D9EFF</color>
+    <color name="mong500">#0A85FF</color>
+    <color name="mong600">#006CE0</color>
+    <color name="mong700">#0051AD</color>
+    <color name="mong800">#00397A</color>
+    <color name="mong900">#002147</color>
+
+    <color name="positive50">#DBFBE6</color>
+    <color name="positive200">#89F4A3</color>
+    <color name="positive500">#00CF56</color>
+
+    <color name="negative50">#FFF0F0</color>
+    <color name="negative200">#FFAAAC</color>
+    <color name="negative500">#FF2A31</color>
+
+    <color name="accent50">#E0EEFE</color>
+    <color name="accent200">#98CAFF</color>
+    <color name="accent500">#2C59FF</color>
+
+    <color name="warning50">#FFF2DD</color>
+    <color name="warning200">#FFDCA1</color>
+    <color name="warning500">#FFAC1D</color>
+
+    <color name="gray100">#F5F5F5</color>
+    <color name="gray200">#EFEFEF</color>
+    <color name="gray300">#E1E1E1</color>
+    <color name="gray400">#B2B2B2</color>
+    <color name="gray500">#959595</color>
+    <color name="gray600">#777777</color>
+    <color name="gray700">#5F5F5F</color>
+    <color name="gray800">#3F3F3F</color>
+    <color name="gray900">#202020</color>
+
 </resources>
