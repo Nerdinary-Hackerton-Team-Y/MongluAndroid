@@ -39,6 +39,7 @@
         android:maxLines="1"
         android:paddingHorizontal="10dp"
         android:textColor="@color/gray900"
+        android:inputType="textPassword"
         android:paddingVertical="10dp"
         android:singleLine="true"
         android:textColorHint="@color/gray300"

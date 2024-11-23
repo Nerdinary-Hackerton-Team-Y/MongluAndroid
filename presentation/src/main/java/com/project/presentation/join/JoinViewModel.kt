@@ -1,13 +1,19 @@
 package com.project.presentation.join
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.project.data.repository.AccountRepository
+import com.project.data.repository.RepositoryFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class JoinViewModel : ViewModel() {
     private val _uiSate = MutableStateFlow(JoinUiState.init())
     val uiState = _uiSate.asStateFlow()
+
+    private val accountRepository: AccountRepository = RepositoryFactory.createAccountRepository()
 
     fun updateEtUiState(type: UpdateJoinEtType, data: String) {
         when (type) {
@@ -17,7 +23,13 @@ class JoinViewModel : ViewModel() {
         }
     }
 
-    fun join(clear: () -> Unit) {
+    fun join(clear: () -> Unit) = viewModelScope.launch{
+        uiState.value.let {
+            accountRepository.register(
+                email = it.email,
+                password = it.pw
+            )
+        }
         clear
     }
 }
