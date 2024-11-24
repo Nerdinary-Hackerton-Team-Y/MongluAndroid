@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 
 class FeedViewModel : ViewModel() {
     private val questRepository = RepositoryFactory.createQuestRepository()
+    private val postRepository = RepositoryFactory.createPostRepository()
 
     private val _uiState = MutableStateFlow(FeedUiState.init())
     val uiState = _uiState.asStateFlow()
@@ -29,7 +30,7 @@ class FeedViewModel : ViewModel() {
         )
     }
 
-    fun getQuest(){
+    fun getQuest() {
         viewModelScope.launch {
             val res = questRepository.getCurrQuest()
             _uiState.value = _uiState.value.copy(
@@ -38,61 +39,78 @@ class FeedViewModel : ViewModel() {
         }
     }
 
-    fun searchFeed(text: String) {
-        _uiState.value = _uiState.value.copy(
-            feedList = listOf(
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = false,
-                ),
-                FeedItem(
-                    id = 2,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = true,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = false,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = true,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = false,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = true,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = false,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = true,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = false,
-                ),
-                FeedItem(
-                    id = 1,
-                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
-                    isLike = true,
-                ),
-
+    fun searchFeed(text: String, orderCode: Int) {
+        viewModelScope.launch {
+            val res = postRepository.getHashtagPost(
+                orderCode = orderCode,
+                hashtag = text
             )
-        )
+            if (res != null) {
+                _uiState.value = _uiState.value.copy(
+                    feedList = res.map {
+                        FeedItem(
+                            id = it.id,
+                            imgUrl = it.imageUrl ?: "",
+                            isLike = it.isQuest,
+                        )
+                    }
+                )
+            }
+        }
+//        _uiState.value = _uiState.value.copy(
+//            feedList = listOf(
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = false,
+//                ),
+//                FeedItem(
+//                    id = 2,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = true,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = false,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = true,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = false,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = true,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = false,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = true,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = false,
+//                ),
+//                FeedItem(
+//                    id = 1,
+//                    imgUrl = "https://www.cctimes.kr/news/photo/201312/357863_120718_5653.jpg",
+//                    isLike = true,
+//                ),
+//
+//                )
+//        )
     }
 }

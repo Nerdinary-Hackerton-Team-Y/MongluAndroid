@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.project.presentation.R
 import com.project.presentation.databinding.FragmentJoinBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -35,7 +37,14 @@ class JoinFragment : Fragment() {
         initView()
         initViewModel()
 
+        binding.btnJoin.setOnClickListener{
+            viewModel.register(
+                email = binding.etJoinEmail.text.toString(),
+                password = binding.etJoinPassword.text.toString()
+            )
+        }
     }
+
 
     private fun initView() = with(binding) {
         fun initEtDataToViewModel() {
@@ -116,6 +125,15 @@ class JoinFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             uiState.collectLatest { uiSate ->
                 onBind(uiSate)
+                if(uiSate.isRegisterSuccess){
+                    val navController = findNavController()
+
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(R.id.nav_graph, inclusive = true) // 스택 초기화
+                        .build()
+
+                    navController.navigate(R.id.nav_login, null, navOptions)
+                }
             }
         }
     }

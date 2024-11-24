@@ -46,6 +46,7 @@ class AccountRepository(
             )
             res.isSuccessful && res.code() == 200
         } catch (e: Exception) {
+            e.printStackTrace()
             false
         }
 

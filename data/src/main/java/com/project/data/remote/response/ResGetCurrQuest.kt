@@ -15,4 +15,5 @@ data class ResGetCurrRequestPost(
     @SerializedName("content") val content: String,
     @SerializedName("isQuest") val isQuest: Boolean,
     @SerializedName("score") val score: Int,
+    @SerializedName("likeCount") val likeCount: Int,
 )
